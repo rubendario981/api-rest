@@ -10,11 +10,13 @@ import com.management_store.api_rest.models.User;
 import com.management_store.api_rest.repository.UserRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/users")
 @Tag(name = "User", description = "User management")
+@SecurityRequirement(name = "BearerAuth")
 public class UserController {
 
     private final UserRepository userRepository;
