@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.management_store.api_rest.models.User;
+import com.management_store.api_rest.models.Role;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
-  Optional<User> findByEmail(String email);
+public interface RoleRepository extends JpaRepository<Role, UUID> {
+  Optional<Role> findByName(String name);
 }

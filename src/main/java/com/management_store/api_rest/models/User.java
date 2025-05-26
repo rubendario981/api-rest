@@ -3,30 +3,40 @@ package com.management_store.api_rest.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "core_users")
+@Table(name = "users")
 @Data
 public class User {
     @Id
     @Column(columnDefinition = "uuid")
+    @GeneratedValue
     private UUID id;
 
     private String name;
-    private String email;
-    private String avatar;
-    private String avatar_name;
-    private Integer status;
-    private String password;
-    private String reset_password;
-    private String verify_token;
-    private String verification_code;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+    private String password;
+    private Integer status;
+
+    @UpdateTimestamp
     private LocalDateTime created_at;
+    @UpdateTimestamp
     private LocalDateTime updated_at;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 }
