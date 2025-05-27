@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,8 +21,8 @@ import lombok.Data;
 @Data
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "uuid")
-    @GeneratedValue
     private UUID id;
 
     private String name;
@@ -32,6 +33,7 @@ public class User {
     private Integer status;
 
     @UpdateTimestamp
+    @Column(updatable = false)
     private LocalDateTime created_at;
     @UpdateTimestamp
     private LocalDateTime updated_at;
