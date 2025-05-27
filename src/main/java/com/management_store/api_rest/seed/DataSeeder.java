@@ -67,7 +67,7 @@ public class DataSeeder {
                     superUser.setName("Super Admin");
                     superUser.setEmail("superadmin@tienda.com");
                     superUser.setPassword(passwordEncoder.encode("superclave123"));
-                    superUser.setStatus(1);
+                    superUser.setStatus(UserStatus.ACTIVE);
                     superUser.setRole(superadmin);
                     userRepository.save(superUser);
                 }

@@ -2,16 +2,20 @@ package com.management_store.api_rest.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.*;
 
 @Service
-public class JwtService {
+public class JwtService {;
+  private final Key key;
 
-  private static final String SECRET_KEY = "superclavesecretaconmasde32caracteres123456";
-  private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+  public JwtService(@Value("${jwt.secret}") String secret) {
+    this.key = Keys.hmacShaKeyFor(secret.getBytes());
+  }
 
   public String generateToken(UserPrincipal user) {
     return Jwts.builder()
